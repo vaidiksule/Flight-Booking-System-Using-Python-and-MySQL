@@ -3,7 +3,7 @@
 The Flight Booking System is a user-friendly Python application that provides an efficient way for users to book flights, store their information securely, and generate printable tickets. This system seamlessly integrates with a MySQL database to manage user accounts and flight reservations.
 
 
-KEY FEATURES:
+**KEY FEATURES:**
 
 1. User Authentication:
    - Users can create an account by providing a unique login ID and password.
@@ -28,13 +28,13 @@ KEY FEATURES:
       departure date.
 
 
-TECHNOLOGIES USED:
+**TECHNOLOGIES USED:**
 
 - Python for the application logic and user interface.
 - MySQL for database management.
 - Notepad for ticket generation.
 
 
-CONCLUSION:
+**CONCLUSION:**
 
 The Flight Booking System offers a hassle-free way for users to plan their air travel, from booking flights to generating printable tickets. Its integration with a MySQL database ensures data security, making it a valuable tool for both users and airlines. This project can be further expanded and enhanced to include more features and functionalities in the future.
