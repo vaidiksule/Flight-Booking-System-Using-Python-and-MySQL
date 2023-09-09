@@ -1,0 +1,15 @@
+create database userdata;
+
+use userdata;
+
+create table data (username varchar(60) primary key not null,
+email varchar(200) not null,
+password varchar(30) not null);
+
+create table flight_details (id int not null auto_increment primary key, 
+_FROM varchar(20) not null, 
+_TO varchar(20) not null, 
+PASSENGER varchar(30) not null, 
+DATE varchar(20) not null, 
+AGE int not null, 
+CLASS varchar(20) not null);
