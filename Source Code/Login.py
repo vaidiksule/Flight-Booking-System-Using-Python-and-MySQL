@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import messagebox
 import mysql.connector
+import hashlib
+import os
 
 # =========================================================
 # GUI Interface
@@ -17,6 +19,9 @@ backgroundLabel.place(x=0, y=0)
 
 # =========================================================
 # FUNCTIONS
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
+
 def login_user():
     if usernameEntry.get() == "Username" or usernameEntry.get() == "":
         messagebox.showerror("Error", "Please Enter Username")
@@ -32,8 +37,9 @@ def login_user():
 
         query = "use userdata"
         mycursor.execute(query)
+        hashed_password=hash_password(passwordEntry.get())
         query = "select * from data where username=%s  and password=%s"
-        mycursor.execute(query, (usernameEntry.get(), passwordEntry.get()))
+        mycursor.execute(query, (usernameEntry.get(), hashed_password))
         row = mycursor.fetchone()
         if row is None:
             messagebox.showerror("Error", "Invalid username or password!")

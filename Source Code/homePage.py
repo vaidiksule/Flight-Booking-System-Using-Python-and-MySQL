@@ -19,17 +19,36 @@ backgroundLabel.place(x=0, y=0)
 # FUNCTIONS
 
 def submit():
-    if toVar.get() == "" or fromVar.get() == "" or nameEntry == "" or classVar.get() == "" or \
-            departureEntry == "" or ageEntry == "":
+    if toVar.get() == "" or fromVar.get() == "" or nameEntry.get() == "" or classVar.get() == "" or \
+        departureEntry.get() == "" or ageEntry.get() == "":
+
         messagebox.showerror('Error', 'All Fields Are Required!')
 
     else:
+        def submit(self):
+    if not (self.toVar.get() and self.fromVar.get() and nameEntry.get() and 
+            self.classVar.get() and departureEntry.get() and ageEntry.get()):
+        messagebox.showerror('Error', 'All Fields Are Required!')
+        return
+
+    db = Database()
+    if db.connect():  # Only proceed if the connection was successful
         try:
-            con = mysql.connector.connect(host='localhost', user='root', passwd='9090')
-            mycursor = con.cursor()
-        except:
-            messagebox.showerror("Error", 'Database Connectivity Issue, Please Try Again')
-            return
+            db.insert_flight_details(
+                self.fromVar.get(), self.toVar.get(), nameEntry.get(),
+                departureEntry.get(), ageEntry.get(), self.classVar.get()
+            )
+            Ticket.save_ticket(
+                nameEntry.get(), ageEntry.get(), self.classVar.get(),
+                self.fromVar.get(), self.toVar.get(), departureEntry.get()
+            )
+            self.clear()
+            messagebox.showinfo("Success", "Ticket Booked Successfully")
+        except mysql.connector.Error as err:
+            messagebox.showerror("Error", f'Database Error: {err}')
+        finally:
+            db.close()  # Ensure the connection is closed
+
 
         query = 'use userdata'
         mycursor.execute(query)

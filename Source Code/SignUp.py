@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox, Entry, Checkbutton
 import mysql.connector
+import hashlib
 
 # =========================================================
 # GUI Interface
@@ -17,6 +18,8 @@ backgroundLabel.place(x=0, y=0)
 
 # =========================================================
 # FUNCTIONS
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
 def signup_user():
     if usernameEntry.get() == "Username" or usernameEntry.get() == "" or emailEntry.get() == "Email" or \
             emailEntry.get() == "" or passwordEntry.get() == "Password" or conformEntry.get() == "Conform Password" or \
@@ -42,8 +45,9 @@ def signup_user():
         if row is not None:
             messagebox.showerror("Error", 'Username or Email Already Exist!')
         else:
+            hashed_password = hash_password(passwordEntry.get())
             query = "insert into data(username,email,password) values(%s,%s,%s)"
-            mycursor.execute(query, (usernameEntry.get(), emailEntry.get(), passwordEntry.get()))
+            mycursor.execute(query, (usernameEntry.get(), emailEntry.get(), hashed_password))
             con.commit()
             con.close()
             clear()
@@ -98,13 +102,13 @@ emailEntry.insert(0, "Email")
 emailEntry.bind('<FocusIn>', user_enterE)
 
 # passwordEntry
-passwordEntry = Entry(signup_window, font=('Comic Sans MS', 12), bd=0, fg="gray7", bg="light cyan", width=31)
+passwordEntry = Entry(signup_window, font=('Comic Sans MS', 12), bd=0, fg="gray7", bg="light cyan", width=31, show='*')
 passwordEntry.place(x=486, y=430)
 passwordEntry.insert(0, "Password")
 passwordEntry.bind('<FocusIn>', pass_enter)
 
 # conform passwordEntry
-conformEntry = Entry(signup_window, font=('Comic Sans MS', 12), bd=0, fg="gray7", bg="light cyan", width=31)
+conformEntry = Entry(signup_window, font=('Comic Sans MS', 12), bd=0, fg="gray7", bg="light cyan", width=31 , show='*')
 conformEntry.place(x=486, y=477)
 conformEntry.insert(0, "Conform Password")
 conformEntry.bind('<FocusIn>', conform_pass_enter)
