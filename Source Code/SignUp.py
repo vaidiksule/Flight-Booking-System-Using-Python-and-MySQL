@@ -26,6 +26,10 @@ def signup_user():
             emailEntry.get() == "" or passwordEntry.get() == "Password" or conformEntry.get() == "Conform Password" or \
             conformEntry.get() == "":
         messagebox.showerror('Error', 'All Fields Are Required!')
+
+    elif not is_valid_email(emailEntry.get()):
+        messagebox.showerror('Error', 'Please Enter a Valid Email Address!')
+        
     elif passwordEntry.get() != conformEntry.get():
         messagebox.showerror('Error', 'password Mismatch!')
     elif check.get() == 0:
