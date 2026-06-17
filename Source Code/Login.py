@@ -8,7 +8,7 @@ import os
 # GUI Interface
 login_window = Tk()
 login_window.title("Login")
-login_window.geometry("1280x720+125+50")
+login_window.geometry("1280x720+0+0")
 login_window.maxsize(width=1280, height=720)
 
 # background
