@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox, Entry, Checkbutton
 import mysql.connector
-import hashlib
+import bcrypt
 
 # =========================================================
 # GUI Interface
@@ -19,7 +19,8 @@ backgroundLabel.place(x=0, y=0)
 # =========================================================
 # FUNCTIONS
 def hash_password(password):
-    return hashlib.sha256(password.encode()).hexdigest()
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(password.encode(), salt)
 def signup_user():
     if usernameEntry.get() == "Username" or usernameEntry.get() == "" or emailEntry.get() == "Email" or \
             emailEntry.get() == "" or passwordEntry.get() == "Password" or conformEntry.get() == "Conform Password" or \
