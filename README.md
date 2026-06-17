@@ -17,7 +17,7 @@ The Flight Booking System is a user-friendly Python application that provides an
    - Users can specify the departure date for their flight.
 
 3. Database Integration:
-   - User account information, including login IDs and passwords, is securely stored in a MySQL database.
+   - User account information, including login IDs and passwords, is securely stored in encrypted hash way in a MySQL database.
    - Flight reservation details, including passenger information and flight preferences, are saved in 
       another database table.
 

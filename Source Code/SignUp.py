@@ -21,11 +21,6 @@ backgroundLabel.place(x=0, y=0)
 def hash_password(password):
     salt = bcrypt.gensalt()
     return bcrypt.hashpw(password.encode(), salt)
-    
-def is_valid_email(email):
-    pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-    return re.match(pattern, email) is not None
-
 def signup_user():
     if usernameEntry.get() == "Username" or usernameEntry.get() == "" or emailEntry.get() == "Email" or \
             emailEntry.get() == "" or passwordEntry.get() == "Password" or conformEntry.get() == "Conform Password" or \
@@ -112,13 +107,13 @@ emailEntry.insert(0, "Email")
 emailEntry.bind('<FocusIn>', user_enterE)
 
 # passwordEntry
-passwordEntry = Entry(signup_window, font=('Comic Sans MS', 12), bd=0, fg="gray7", bg="light cyan", width=31,show="*")
+passwordEntry = Entry(signup_window, font=('Comic Sans MS', 12), bd=0, fg="gray7", bg="light cyan", width=31, show='*')
 passwordEntry.place(x=486, y=430)
 passwordEntry.insert(0, "Password")
 passwordEntry.bind('<FocusIn>', pass_enter)
 
 # conform passwordEntry
-conformEntry = Entry(signup_window, font=('Comic Sans MS', 12), bd=0, fg="gray7", bg="light cyan", width=31 ,show="*")
+conformEntry = Entry(signup_window, font=('Comic Sans MS', 12), bd=0, fg="gray7", bg="light cyan", width=31 , show='*')
 conformEntry.place(x=486, y=477)
 conformEntry.insert(0, "Conform Password")
 conformEntry.bind('<FocusIn>', conform_pass_enter)
